@@ -125,7 +125,7 @@ wget.callbacks.get_urls = function(file, url, is_css, iri)
     newurl = decode_codepoint(newurl)
     local origurl = url
     local url = string.match(newurl, "^([^#]+)")
-    local url_ = string.match(url, "^(.-)[%.\\]*$")
+    local url_ = url --string.match(url, "^(.-)[%.\\]*$")
     while string.find(url_, "&amp;") do
       url_ = string.gsub(url_, "&amp;", "&")
     end
