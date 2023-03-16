@@ -313,6 +313,15 @@ wget.callbacks.httploop_result = function(url, err, http_stat)
     downloaded[string.gsub(url["url"], "https?://", "http://")] = true
   end
 
+  if status_code == 403
+    and (
+      string.match(url["url"], "%.jpg$")
+      or string.match(url["url"], "/text_info%.bin$")
+      or string.match(url["url"], "/smartzoom%.bin$")
+    ) then
+    return wget.actions.EXIT
+  end
+
   if abortgrab then
     abort_item()
     return wget.actions.EXIT
